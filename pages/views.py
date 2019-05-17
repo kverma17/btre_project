@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
 from listings.models import Listing
+from listings.choices import state_choices, price_choices, bedroom_choices
 from realtors.models import Realtor
+import pprint
 
 # Create your views here.
 
@@ -10,8 +12,12 @@ def index(request):
     listing = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
 
     context = {
-        'listings': listing
+        'listings': listing,
+        'state_choices': state_choices,
+        'price_choices': price_choices,
+        'bedroom_choices': bedroom_choices
     }
+    pprint.pprint(state_choices)
     return render(request, 'pages/index.html', context)
 
 def about(request):
