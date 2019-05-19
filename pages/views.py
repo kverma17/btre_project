@@ -17,8 +17,11 @@ def index(request):
         'price_choices': price_choices,
         'bedroom_choices': bedroom_choices
     }
-    pprint.pprint(state_choices)
+    #pprint.pprint(state_choices)
     return render(request, 'pages/index.html', context)
+
+def admin(request):
+    return render(request, 'admin/base_site.html')
 
 def about(request):
     #Get all realtors
