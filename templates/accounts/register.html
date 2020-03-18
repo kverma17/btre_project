@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %} | Register Account{% endblock %}
 {% block content %}
   <section id="register" class="bg-light py-5">
         <div class="container">
@@ -11,6 +11,8 @@
                     <i class="fas fa-user-plus"></i> Register</h4>
                 </div>
                 <div class="card-body">
+                  <!-- Alerts -->
+                  {% include 'partials/_alert.html' %}
                     <form action="{% url 'register' %}" method="POST">
                         {% csrf_token %}
                       <div class="form-group">
@@ -37,8 +39,6 @@
                       <label for="password">Confirm Password</label>
                       <input type="password" name="password2" class="form-control" required>
                     </div>
-                    <!-- Alerts -->
-                    {% include 'partials/_alert.html' %}
                     <input type="submit" value="Register" class="btn btn-secondary btn-block">
                   </form>
                 </div>

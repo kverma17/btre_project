@@ -1,0 +1,25 @@
+version: '3'
+volumes:
+  pgdata:
+services:
+  postgres:
+    image: postgres
+    ports:
+    - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: karan123
+      POSTGRES_NAME: btredb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db.sql:/docker-entrypoint-initdb.d/init.sql
+
+  python:
+    image: python:3.7.3
+    volumes:
+      - .:/btre_project
+    ports:
+      - 8000:8000
+    command: >
+      bash -c "cd /btre_project && pip install -r requirements.txt && python manage.py migrate && python manage.py runserver"

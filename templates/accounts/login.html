@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %} | Login Account{% endblock %}
 {% block content %}
   <section id="login" class="bg-light py-5">
         <div class="container">
@@ -13,6 +13,10 @@
                 <div class="card-body">
                   <form action="{% url 'login' %}" method="POST">
                       {% csrf_token %}
+                      
+                    <!-- Alerts -->
+                    {% include 'partials/_alert.html' %}
+
                     <div class="form-group">
                       <label for="username">Username</label>
                       <input type="text" name="username" class="form-control" required>
@@ -22,8 +26,6 @@
                       <label for="password2">Password</label>
                       <input type="password" name="password" class="form-control" required>
                     </div>
-                    <!-- Alerts -->
-                    {% include 'partials/_alert.html' %}
                     <input type="submit" value="Login" class="btn btn-secondary btn-block">
                   </form>
                 </div>
